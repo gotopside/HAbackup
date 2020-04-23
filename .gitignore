@@ -9,6 +9,7 @@ __pycache__
 *.key
 *.zones
 tts
+*.node-red
 
 # Directory (contents) ignores
 .cloud
