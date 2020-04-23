@@ -1,0 +1,9 @@
+# Show links in panel on the left
+
+# Tasmota admin
+tasmoadmin:
+  title: 'TasmoAdmin'
+  icon: 'mdi:toilet'
+  url: 'http://192.168.0.20:9541/devices'
+
+

@@ -1,0 +1,115 @@
+
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: washer
+  friendly_name: Washer
+  button_delay: 150ms
+  ip_address: !secret washer_ip
+  
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret ssidH
+  password: !secret passwdH
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+# Enable logging
+logger:
+  baud_rate: 0
+
+web_server:
+  port: 80
+  
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+
+sensor:
+  - platform: wifi_signal
+    name: "Washer WiFi Signal"
+    update_interval: 60s
+    
+  - platform: uptime
+    name: "Washer Uptime"     
+    
+  - platform: cse7766
+    current:
+      name: "Washer Current"
+      unit_of_measurement: 'A'
+      accuracy_decimals: 2
+#      filters:
+#      - calibrate_linear:
+#          # Map 0.0 (from sensor) to 0.0 (true value)
+#          - 0.0 -> 0.0
+#          - 0.001 -> 0.25
+    voltage:
+      name: "Washer Voltage"
+      unit_of_measurement: 'V'
+      accuracy_decimals: 2      
+      filters:
+      - calibrate_linear:
+#          # Map 0.0 (from sensor) to 0.0 (true value)
+          - 0.0 -> 0.0
+          - 119.4 -> 118.8
+    power:
+      name: "Washer Power"
+      unit_of_measurement: 'W'      
+      accuracy_decimals: 2      
+#     Sensor => Kill-A-Watt
+#     S31 itself uses 1W according to K-A-W
+      filters:
+      - calibrate_linear:
+#          # Map 0.0 (from sensor) to 0.0 (true value)
+          - 0.0 -> 0.0
+          - 14.7 -> 14.0
+    update_interval: 5s      
+    
+# Enable Home Assistant API
+#api:
+
+mqtt:
+  broker: 192.168.0.20
+  username: EDmqtt
+  password: password
+#  discovery_retain: False
+  discovery: True
+  birth_message:
+    topic: laundry/washer/status
+    payload: online
+  will_message:
+    topic: laundry/washer/status
+    payload: offline  
+
+ota:
+
+#Sonoff S31
+#Pin	Function
+#GPIO0	Button (inverted)
+#GPIO12	Relay and Red LED
+#GPIO13	Green LED (inverted)
+
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: 0
+      inverted: True
+    name: "Washer button"
+    
+    
+switch:
+  - platform: gpio
+    pin: 12
+    name: "Washer Relay"
+    restore_mode: ALWAYS_ON
+    
+  - platform: gpio
+    pin: 13
+    inverted: True
+    name: "Washer LED"
+    restore_mode: ALWAYS_OFF

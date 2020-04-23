@@ -1,0 +1,7 @@
+# Notify VIA alexa
+- platform: alexa_media
+  name: alexa_media
+
+- platform: telegram
+  name: telegram
+  chat_id: !secret telegram_chatid

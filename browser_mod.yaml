@@ -1,0 +1,21 @@
+#browser_mod.yaml
+
+prefix: "browser_"
+devices:
+  e25f1f51-32ce8e9d:
+    name: office_desktop
+
+  fb63e041-e127223c:
+    name: tablet_chrome
+
+  1870d59c-033d4d5e:
+    name: samsung_tablet
+
+  2f8f4770-bc0c6192:
+    name: phone
+
+#  cf9bb4eb_6312fc50:
+#    name: fully
+
+  75d668ab d41e9cfb:
+    name: Fully

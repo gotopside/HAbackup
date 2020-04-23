@@ -1,0 +1,82 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: office_multisensor
+  friendly_name: Office multisensor
+  ip_address: !secret office_multisensor_ip
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidH
+  password: !secret passwdH
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+web_server:
+  port: 80
+
+sensor:
+  - platform: dht
+    id: off_temp
+    model: AM2302
+    pin: D7
+    temperature:
+      name: "Office Temperature"
+    humidity:
+      name: "Office Humidity"
+    update_interval: 10s
+    
+  - platform: adc
+    pin: A0
+    name: "Office Brightness"
+    unit_of_measurement: lux
+    update_interval: 10s
+    filters: 
+      - lambda: |-
+          return (x / 10000.0) * 2000000.0;
+    
+    
+  - platform: wifi_signal
+    name: "Office WiFi Signal"
+    update_interval: 60s
+    
+  - platform: uptime
+    name: "Office Temperature Uptime"  
+    
+binary_sensor:
+  - platform: gpio
+    id: office_motion
+    pin: D5
+    name: "Office Motion"
+    
+output:
+  - platform: esp8266_pwm
+    pin: D1
+    id: redgpio
+  - platform: esp8266_pwm
+    pin: D2
+    id: greengpio
+  - platform: esp8266_pwm
+    pin: D3
+    id: bluegpio
+
+light:
+  - platform: rgb
+    name: "Multisensor Light"
+    red: redgpio
+    green: greengpio
+    blue: bluegpio    
+  

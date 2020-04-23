@@ -1,0 +1,315 @@
+# Sensors.yaml
+
+# Count configuration lines
+- platform: command_line
+  name: Count Config lines
+  command: 'cat /usr/share/hassio/homeassistant/configuration.yaml | wc -l'
+
+# Uptime
+- platform: uptime
+  name: Uptime
+  unit_of_measurement: hours
+
+#### TIME/DATE ##################################
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'time_date'
+    - 'time_utc'
+      
+- platform: worldclock
+  time_zone: Etc/UTC
+  name: 'UTC'
+
+- platform: worldclock
+  time_zone: America/New_York
+  name: 'Hollywood'
+
+# Monitor phone battery
+
+- platform: mqtt
+  state_topic: "zanzito/oneplus5z/battery_level"
+  name: "Phone Battery"
+  unit_of_measurement: "%"
+#  value_template: '{{ value_json.batt }}'
+  device_class: battery
+
+### Weather
+
+- platform: darksky
+  api_key: !secret DS_key
+  forecast:
+    - 0
+  monitored_conditions:
+    - summary
+    - icon
+    - apparent_temperature
+
+### Smart battery state of charge
+- platform: mqtt
+  name: SOC
+  state_topic: "ovms/soc"
+  unit_of_measurement: "%"
+
+### OVMS is it charging?
+- platform: mqtt
+  name: Charging
+  state_topic: "ovms/OVMS/JK4or2wo/metric/v/c/charging"
+
+### Smart car charging amps
+- platform: mqtt
+  name: OpenEVSE amps
+  state_topic: "car/charging_amps"
+  unit_of_measurement: 'amps'
+
+### Smart car connection status
+- platform: mqtt
+  name: OpenEVSE status
+  state_topic: "car/status"
+
+### OpenEVSE total KWh
+- platform: mqtt
+  name: OpenEVSE KWh
+  state_topic: "openevse/kwh"
+
+### Litterbox usage counter
+- platform: mqtt
+  name: Crap-O-Matic
+  state_topic: "poop/count"
+  unit_of_measurement: 'Poops'
+
+### Litterbox drawer counter
+- platform: mqtt
+  name: current poops
+  state_topic: "poop/current"
+
+### Litterbox drawer last emptied
+- platform: mqtt
+  name: drawer
+  state_topic: "poop/lastemptied"
+
+### Outside garage lights energy in watts
+- platform: mqtt
+  name: "Outside garage Power"
+  state_topic: "shellies/shellyswitch-1F6AB9/relay/power"
+  unit_of_measurement: "Watts"
+
+### Outside garage lights energy usage
+- platform: mqtt
+  name: "Outside garage Energy"
+  state_topic: "shellies/shellyswitch-1F6AB9/relay/energy"
+  unit_of_measurement: "kWh"
+
+### Inside garage lights energy in watts
+- platform: mqtt
+  name: "Inside garage Power"
+  state_topic: "shellies/shellyswitch-1F6BAD/relay/power"
+  unit_of_measurement: "Watts"
+
+### Inside garage lights energy usage
+- platform: mqtt
+  name: "Inside garage Energy"
+  state_topic: "shellies/shellyswitch-1F6BAD/relay/energy"
+  unit_of_measurement: "kWh"
+
+### Garage air conditioner outlet temperature via D1 and DS18B20
+- platform: mqtt
+  state_topic: 'garage/tele/garageAC/SENSOR'
+  name: 'Garage AC output'
+  unit_of_measurement: '°F'
+  value_template: '{{ value_json["DS18B20"]["Temperature"] }}'
+
+### Garage temperature via D1 and AM2302 in shop door opener
+- platform: mqtt
+  state_topic: 'garage/tele/ShopDoor/SENSOR'
+  name: 'Garage Temp' #AM2302
+  unit_of_measurement: '°F'
+  value_template: '{{ value_json.AM2301.Temperature }}'
+
+### Garage humidity via D1 and AM2302 in shop door opener
+- platform: mqtt
+  state_topic: 'garage/tele/ShopDoor/SENSOR'
+  name: 'Garage Humidity'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.AM2301.Humidity }}'
+
+### Average of house temperature sensors used as input to climate.ac
+- platform: average
+  name: 'fucker'
+  duration:
+    minutes: 30
+  entities:
+    - sensor.kitchen_temperature
+    - sensor.office_temperature
+    - sensor.thermostat_temperature
+
+### SNMP for monitor raspberry pi units
+- platform: snmp
+  name: 'printer uptime'
+  host: 192.168.0.5
+  baseoid: 1.3.6.1.2.1.1.3.0
+  accept_errors: true
+  unit_of_measurement: 'minutes'
+  value_template: '{{((value | int) / 6000) | int}}'
+
+- platform: snmp
+  name: 'Mikrotik monitor uptime'
+  host: 192.168.0.1
+  baseoid: 1.3.6.1.2.1.1.3.0
+  accept_errors: true
+  unit_of_measurement: 'minutes'
+  value_template: '{{((value | int) / 6000) | int}}'
+
+### Office fan logic
+- platform: template
+  sensors:
+    office_temperature_target:
+      friendly_name: "Office Target Temperature"
+      unit_of_measurement: '°F'
+      value_template: "{{ state_attr('climate.office', 'temperature') }}"
+
+### System monitor
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+
+### A/C efficiency
+- platform: template
+  sensors:
+    outside_air_temp_diff:
+      entity_id:
+        - sensor.temp
+        - sensor.dark_sky_apparent_temperature
+      unit_of_measurement: '°F'      
+      value_template: >-
+        {% set tstat = states('sensor.temp') | round(2) | float %}
+        {% set outdoor = states('sensor.dark_sky_apparent_temperature') | round(2) | float %}
+        {{ outdoor - tstat }}
+
+### Return air difference for monitoring AC health
+- platform: template
+  sensors:
+    return_air_temp_diff:
+      entity_id:
+        - sensor.temp
+        - sensor.a_c_plenum_temperature
+      unit_of_measurement: '°F'      
+      value_template: >-
+        {% set return = states('sensor.temp') | float | round(0) %}
+        {% set output = states('sensor.a_c_plenum_temperature') | float | round(0) %}
+        {{ return - output | round(1) }}
+
+### History stats for garage AC ontime
+- platform: history_stats
+  name: Garage AC ON this week
+  entity_id: switch.garage_ac
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+### History stats for smart car charging
+- platform: history_stats
+  name: Smart charging this week
+  entity_id: sensor.openevse_status
+  state: 'Car is Charging'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+### Which Alexa was called last
+- platform: template
+  sensors:
+    last_alexa:
+      entity_id:
+        - media_player.office
+        - media_player.kitchen
+        - media_player.garage
+      value_template: >
+        {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+
+### Air quality
+- platform: luftdaten
+  sensor_id: 30151
+  show_on_map: true
+  sensors:
+    monitored_conditions:
+      - P1
+      - P2
+- platform: luftdaten
+  sensor_id: 30152
+  show_on_map: true
+  sensors:
+    monitored_conditions:
+      - temperature
+      - humidity
+      - pressure
+
+### For taking alarm time from phone
+- platform: time_date
+  display_options:
+#    - 'time'
+#    - 'date'
+    - 'date_time'
+#    - 'date_time_iso'
+#    - 'time_date'
+#    - 'time_utc'
+#    - 'beat'
+
+### From Drzzzs video
+- platform: template
+  sensors:
+    printing_status:
+      friendly_name: 'Printing Status'
+      value_template: '{{states.binary_sensor.octoprint.printing.state}}'
+      icon_template: '{% if is_state("binary_sensor.octoprint_printing", "off") %}mdi:sleep{% else %}mdi:printer-3d{% endif %}'
+
+- platform: rest
+  name: fl_covid
+  resource: https://covidtracking.com/api/states?state=FL
+  json_attributes:
+    - positive
+    - negative
+    - pending
+    - hospitalized
+    - death
+    - total
+    - lastUpdateEt
+  value_template: '{{ value_json.state }}'
+  scan_interval: 3600
+
+- platform: template
+  sensors:
+    covid_postive_fl:
+      friendly_name: 'Positive'
+      unit_of_measurement: 'cases'
+      value_template: '{{ states.sensor.fl_covid.attributes["positive"] }}'
+    covid_negative_fl:
+      friendly_name: 'Negative'
+      unit_of_measurement: 'cases'
+      value_template: '{{ states.sensor.fl_covid.attributes["negative"] }}'
+    covid_pending_fl:
+      friendly_name: 'Pending'
+      unit_of_measurement: 'cases'
+      value_template: '{{ states.sensor.fl_covid.attributes["pending"] }}'
+    covid_hospitalized_fl:
+      friendly_name: 'Hospitalized'
+      unit_of_measurement: 'patients'
+      value_template: '{{ states.sensor.fl_covid.attributes["hospitalized"] }}'
+    covid_death_fl:
+      friendly_name: 'Deaths'
+      unit_of_measurement: 'patients'
+      value_template: '{{ states.sensor.fl_covid.attributes["death"] }}'
+    covid_total_fl:
+      friendly_name: 'Total'
+      unit_of_measurement: 'cases'
+      value_template: '{{ states.sensor.fl_covid.attributes["total"] }}'
+    covid_update_fl:
+      friendly_name: 'Last updated'
+      unit_of_measurement: 'time'
+      value_template: '{{ states.sensor.fl_covid.attributes["lastUpdateEt"] }}'
+

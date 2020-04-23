@@ -1,0 +1,14 @@
+light.shelly_shsw_1_5ba8dd:
+  icon: mdi:floor-lamp
+light.shelly_shsw_1_8b0000:
+  icon: mdi:lamp
+switch.shelly_shsw_1_5bab14:
+  icon: mdi:coffee
+device_tracker.98_fa_9b_3d_63_46:
+  friendly_name: Carbon docked
+device_tracker.b8_27_eb_98_10_22:
+  friendly_name: Kingroon octopi
+device_tracker.74_f0_6d_3d_9a_de:
+  friendly_name: Kitchen PC
+device_tracker.9c_8e_cd_27_18_e0:
+  friendly_name: Front doorbell cam

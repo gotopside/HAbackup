@@ -1,0 +1,46 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: freezer
+  friendly_name: Freezer Temperature
+  ip_address: !secret freezer_temperature_ip
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidH
+  password: !secret passwdH
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+web_server:
+  port: 80
+
+dallas:
+  - pin: D5
+    update_interval: 1s
+  
+sensor:
+  - platform: dallas
+    address: 0x79000004BFF3C728
+    name: ${friendly_name}
+    id: ${device_name}
+    
+  - platform: wifi_signal
+    name: ${friendly_name} WiFi Signal
+    update_interval: 60s
+    
+  - platform: uptime
+    name: ${friendly_name} Uptime

@@ -1,0 +1,98 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: laundry_monitor
+  friendly_name: Laundry monitor
+  ip_address: !secret laundry_monitor_ip
+
+esphome:
+  name: ${device_name}
+  platform: ESP32
+  board: esp-wrover-kit
+
+wifi:
+  ssid: !secret ssidH
+  password: !secret passwdH
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+web_server:
+  port: 80
+
+ota:
+
+binary_sensor:
+  - platform: gpio
+    name: "Laundry button"
+    pin:
+      number: 4
+      mode: INPUT_PULLUP
+      inverted: true
+      
+sensor:
+  - platform: dht
+    id: ${device_name}
+    model: AM2302
+    pin: 2
+    temperature:
+      name: "Laundry Room Temperature"
+    humidity:
+      name: "Laundry Room Humidity"
+    update_interval: 10s
+
+  - platform: adc
+    pin: 33
+    id: adc_sensor
+    
+  - platform: ct_clamp
+    sensor: adc_sensor
+    name: "Dryer current"
+    update_interval: 1s
+    filters:
+    - calibrate_linear:
+        # Measured value of 0 maps to 0A
+        - 0 -> 0.01
+        # Known load: 4.0A
+        # Value shown in logs: 0.1333A
+        - 0.5 -> 5.0
+    
+  - platform: wifi_signal
+    name: "Dryer WiFi Signal"
+    update_interval: 60s
+    
+  - platform: uptime
+    name: "Dryer Uptime"    
+
+output:
+
+  - platform: ledc
+    pin: 19
+    id: washer_led
+
+  - platform: ledc
+    pin: 5
+    id: dryer_led
+    
+  - platform: ledc
+    pin: 18
+    id: status_light
+    
+light:
+  - platform: monochromatic
+    output: washer_led
+    name: "Washer"
+    
+  - platform: monochromatic
+    output: dryer_led
+    name: "Dryer"
+    
+  - platform: monochromatic
+    output: status_light
+    name: "Laundry"

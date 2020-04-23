@@ -1,0 +1,25 @@
+long_delay:
+  initial: !secret garage_long_delay
+esphome_garage_delay:
+  initial: '0'
+
+
+### Washing machine
+washer_running:
+  name: Washer
+  icon: 'mdi:washing-machine'
+
+### Dryer
+dryer_running:
+  name: Dryer
+  icon: 'mdi:tumble-dryer'
+
+### 911 door armed state
+911_door_armed:
+  name: 911 door armed
+
+### Smart door armed state
+smart_door_armed:
+  name: Smart door armed
+
+

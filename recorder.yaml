@@ -1,0 +1,94 @@
+#
+## Controls what goes into database
+#recorder:
+  purge_keep_days: 1
+  purge_interval: 1
+  exclude:
+    domains:
+      - camera
+      - automation
+      - weblink
+      - updater
+  include:
+    entities:
+      - alarm_control_panel.home_alarm
+      - binary_sensor.911presence
+      - binary_sensor.back_door
+      - binary_sensor.bathroom_window
+      - binary_sensor.east_gate
+      - binary_sensor.front_door
+      - binary_sensor.garage_fire_door
+      - binary_sensor.garage_shed_door
+      - binary_sensor.garage_motion
+      - binary_sensor.gbr_nw_window
+      - binary_sensor.gbr_south_window
+      - binary_sensor.gbr_sw_window
+      - binary_sensor.kitchen_door
+      - binary_sensor.kitchen_window
+      - binary_sensor.laundry_room_door
+      - binary_sensor.lr_alarm_motion
+      - binary_sensor.lr_se_window
+      - binary_sensor.lr_sw_window
+      - binary_sensor.mbr_e_window
+      - binary_sensor.mbr_n_window
+      - binary_sensor.office_e_window
+      - binary_sensor.office_se_window
+      - binary_sensor.office_sw_window
+      - binary_sensor.smartcarpresence
+      - binary_sensor.west_gate
+      - climate.ac
+      - climate.heat
+      - cover.shop_garage_door
+      - cover.truck_garage_door
+      - fan.mbr_fanlincmotor
+      - fan.office_fanlincmotor
+      - input_boolean.notify_home
+      - input_boolean.notify_override
+      - light.garage_light_switchlinc
+      - light.garage_west_lights
+      - light.inside_garage_lights
+      - light.kitchen_work_lights
+      - light.kpl_kitchen_lights
+      - light.mbr_fanlinclight
+      - light.office_fanlinclight
+      - light.stove_light
+      - sensor.average_temp
+      - sensor.barrel
+      - sensor.crapomatic
+      - sensor.drawer
+      - sensor.dryer
+      - sensor.home_alarm_keypad
+      - sensor.humidity
+      - sensor.office_humidity
+      - sensor.office_temp
+      - sensor.openevse_status
+      - sensor.pws_feelslike_f
+      - sensor.shelly2_power
+      - sensor.temp
+      - sensor.ups_battery
+      - sensor.ups_input_voltage
+      - sensor.ups_load
+      - sensor.ups_status
+      - sensor.ups_time_on_battery
+      - sensor.ups_transfer_count
+      - sensor.uptime
+      - sensor.washer
+      - switch.ac
+      - switch.away
+      - switch.coffee
+      - switch.condensate_pump_full
+      - switch.fan
+      - switch.garage_ac
+      - switch.garage_n_light
+      - switch.garage_s_light
+      - switch.gbr_lamp_outlet
+      - switch.heater
+      - switch.inside_garage_lights
+      - switch.mbr_lamp_outlet
+      - switch.n_garage_door_status
+      - switch.office_lamp_outlet
+      - switch.s_garage_door_status
+      - switch.torch_light
+      - variable.last_alarm
+      - variable.last_motion
+

@@ -1,0 +1,16 @@
+### Air quality
+### luftdaten:
+  sensor_id: 30151
+  show_on_map: true
+  sensors:
+    monitored_conditions:
+      - P1
+      - P2
+#platform: luftdaten
+#  sensor_id: 30152
+#  show_on_map: true
+#  sensors:
+#    monitored_conditions:
+#      - temperature
+#      - humidity
+#      - pressure

@@ -1,0 +1,96 @@
+# Switches.yaml
+##### Shelly 2 for outdoor garage lights
+- platform: mqtt
+  name: "Garage S. Light"
+  state_topic: "shellies/shellyswitch-1F6AB9/relay/0"
+  command_topic: "shellies/shellyswitch-1F6AB9/relay/0/command"
+  payload_on: "on"
+  payload_off: "off"
+  retain: false
+
+### Same Shelly2, second relay
+- platform: mqtt
+  name: "Garage N. Light"
+  state_topic: "shellies/shellyswitch-1F6AB9/relay/1"
+  command_topic: "shellies/shellyswitch-1F6AB9/relay/1/command"
+  payload_on: "on"
+  payload_off: "off"
+  retain: false
+
+##### Shelly 2 for indoor garage lights
+- platform: mqtt
+  name: "Garage truck Light"
+  state_topic: "shellies/shellyswitch-1F6BAD/relay/0"
+  command_topic: "shellies/shellyswitch-1F6BAD/relay/0/command"
+  payload_on: "on"
+  payload_off: "off"
+  retain: false
+
+### Same Shelly2, second relay
+- platform: mqtt
+  name: "Garage shop Light"
+  state_topic: "shellies/shellyswitch-1F6BAD/relay/1"
+  command_topic: "shellies/shellyswitch-1F6BAD/relay/1/command"
+  payload_on: "on"
+  payload_off: "off"
+  retain: false
+
+#####  IR controller on Garage AC
+- platform: broadlink
+  host: 192.168.0.54
+  mac: '78:0F:77:5A:B9:52'
+#  timeout: 15
+  type: rm_mini
+  switches:
+    garage_ac:
+      friendly_name: "Garage AC"
+      command_on: 'JgBgAAABKpIUNhQQFRAVEBQRFBEUERQ1FRAVNRQ2FBEUEBU1FDYUERQ1FRAUERQRFBEUERQRFDUUERQ2FDYUNRQ2FDYUNRUQFAAFcAABKkkTAAxZAAEqSBQADFgAASpJFAANBQAAAAAAAAAA'
+      command_off: 'JgBgAAABKpIUNhQQFRAVEBQRFBEUERQ1FRAVNRQ2FBEUEBU1FDYUERQ1FRAUERQRFBEUERQRFDUUERQ2FDYUNRQ2FDYUNRUQFAAFcAABKkkTAAxZAAEqSBQADFgAASpJFAANBQAAAAAAAAAA'
+
+
+##### House thermostat relay status and control
+### Blower fan
+- platform: mqtt
+  name: "Fan"
+  command_topic: "cmnd/thermostat/POWER1"
+  state_topic: "stat/thermostat/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+### Compressor
+- platform: mqtt
+  name: "AC"
+  command_topic: "cmnd/thermostat/POWER2"
+  state_topic: "stat/thermostat/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+### Heater
+- platform: mqtt
+  name: "Heater"
+  command_topic: "cmnd/thermostat/POWER3"
+  state_topic: "stat/thermostat/POWER3"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+
+### Switch for office thermostat
+
+- platform: template
+  switches:
+    office_fan_thermostat_switch:
+      value_template: "{{ is_state('automation.office_fan_turn_on', 'on') }}"
+      turn_on:
+        service: automation.turn_on
+        entity_id: automation.office_fan_speed
+      turn_off:
+        - service: automation.turn_off
+          entity_id: automation.office_fan_turn_on
+        - service: fan.turn_off
+          entity_id: fan.office_fan_switch_level
+
+
+

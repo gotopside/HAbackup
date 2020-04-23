@@ -1,0 +1,87 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: thermostat
+  friendly_name: Thermostat
+#  button_delay: 150ms
+  ip_address: !secret thermostat_ip
+
+esphome:
+  # https://esphome.io/components/esphome
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidH
+  password: !secret passwdH
+    
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+    dns1: !secret lan_dns1
+
+mqtt:
+  broker: !secret mqtt_broker
+  username: !secret mqtt_uname
+  password: !secret mqtt_pw
+  topic_prefix: "thermostat"
+  id: "thermostat"
+    
+logger:
+  # https://esphome.io/components/logger
+
+#api:
+#  password: !secret esphome_api_password
+  # https://esphome.io/components/api
+
+ota:
+
+web_server:
+  port: 80
+
+sensor:
+  - platform: wifi_signal
+    name: $friendly_name WiFi Signal
+    update_interval: 60s
+    
+  - platform: uptime
+    name: $friendly_name Uptime
+
+  - platform: dht
+    model: AM2302
+    pin: D5
+    temperature:
+      name: "Thermostat Temperature"
+    humidity:
+      name: "Thermostat Humidity"
+    update_interval: 50s
+
+switch:
+  - platform: gpio
+    id: fan_relay
+    name: $friendly_name fan
+    pin:
+      number: GPIO5
+      inverted: True
+    restore_mode: ALWAYS_OFF
+
+  - platform: gpio
+    id: ac_relay
+    name: $friendly_name ac
+    pin:
+      number: GPIO4
+      inverted: True
+    restore_mode: ALWAYS_OFF
+
+  - platform: gpio
+    id: heater_relay
+    name: $friendly_name heater
+    pin:
+      number: GPIO15
+      inverted: True
+    restore_mode: ALWAYS_OFF
+
+  
+  - platform: restart
+    name: $friendly_name Reboot

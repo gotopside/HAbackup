@@ -1,0 +1,185 @@
+- id: Update Last Emptied variable
+  alias: Update Last Emptied
+  trigger:
+  - entity_id: binary_sensor.litter_drawer
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      attributes_template: "{\n  \"history_1\": \"{{ variable.state }}\",\n  \"$ :\
+        \ \"{{ variable.attributes.history_1 }}\",\n  \"history_3\": \"{{ varia$ \
+        \ }}\"\n}\n"
+      variable: last_emptied
+    data_template:
+      value: '{{ trigger.to_state.attributes.friendly_name }}'
+    service: var.set
+  initial_state: 'true'
+- id: Update Last Vehicle variable
+  alias: Update Last Vehicle
+  trigger:
+  - above: '0'
+    entity_id: sensor.smart, sensor.911
+    platform: numeric_state
+  action:
+  - data:
+      attributes_template: "{\n  \"history_1\": \"{{ variable.state }}\",\n  \"history_2\"\
+        : \"{{ variable.attributes.history_1 }}\",\n  \"history_3\": \"{{ variable.attributes.history_2\
+        \ }}\"\n}\n"
+      variable: last_vehicle
+    data_template:
+      value: '{{ trigger.to_state.attributes.friendly_name }}'
+    service: var.set
+  initial_state: 'true'
+- id: Fan w/AC
+  alias: Fan on when AC on
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: switch.fan
+    to: 'off'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.ac
+- id: Fan w/Heat
+  alias: Fan on when Heat on
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: switch.fan
+    to: 'off'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.heater
+- id: Fan off after AC
+  alias: Fan off after AC off
+  trigger:
+  - entity_id: switch.thermostat_ac
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - entity_id: switch.thermostat_fan
+    service: switch.turn_off
+  initial_state: 'true'
+- id: Fan off after heat
+  alias: Fan off after Heat off
+  trigger:
+  - entity_id: switch.thermostat_heater
+    platform: state
+    to: 'off'
+  action:
+  - delay: 0:20
+  - entity_id: switch.thermostat_fan
+    service: switch.turn_off
+  initial_state: 'true'
+- id: heat lockout
+  alias: No AC when the Heat is on
+  trigger:
+  - entity_id: switch.thermostat_ac
+    platform: state
+    to: 'on'
+  action:
+  - entity_id: switch.thermostat_heater
+    service: switch.turn_off
+  - entity_id: switch.thermostat_fan
+    service: switch.turn_on
+  initial_state: 'true'
+- id: AC lockout
+  alias: No Heat when the AC is on
+  trigger:
+  - entity_id: switch.thermostat_heater
+    platform: state
+    to: 'on'
+  action:
+  - entity_id: switch.thermostat_ac
+    service: switch.turn_off
+  - entity_id: switch.thermostat_fan
+    service: switch.turn_on
+  initial_state: 'true'
+- id: Summer night
+  alias: Summer Night Temp adjustment
+  trigger:
+  - at: '22:00:00'
+    platform: time
+  condition:
+  - condition: or
+    conditions:
+    - condition: template
+      value_template: '{{ now().month == 5 }}'
+    - condition: template
+      value_template: '{{ now().month == 6 }}'
+    - condition: template
+      value_template: '{{ now().month == 7 }}'
+    - condition: template
+      value_template: '{{ now().month == 8 }}'
+    - condition: template
+      value_template: '{{ now().month == 9 }}'
+  action:
+  - data:
+      entity_id: climate.house
+      operation_mode: Cool
+      temperature: 76
+    service: climate.set_temperature
+  initial_state: 'true'
+- id: Summer day
+  alias: Summer Daytime Temp adjustment
+  initial_state: 'true'
+  trigger:
+  - platform: time
+    at: 09:00:00
+  condition:
+    condition: or
+    conditions:
+    - condition: template
+      value_template: '{{ now().month == 5 }}'
+    - condition: template
+      value_template: '{{ now().month == 6 }}'
+    - condition: template
+      value_template: '{{ now().month == 7 }}'
+    - condition: template
+      value_template: '{{ now().month == 8 }}'
+    - condition: template
+      value_template: '{{ now().month == 9 }}'
+  action:
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.house
+      temperature: 78
+      operation_mode: Cool
+- id: Away on
+  alias: No one home Away Mode On
+  initial_state: 'true'
+  trigger:
+  - platform: state
+    entity_id: device_tracker.topside1, device_tracker.oneplus_5
+    to: not_home
+    for:
+      hours: 24
+  action:
+  - service: climate.set_away_mode
+    data:
+      entity_id: climate.house, climate.heater
+      away_mode: 'on'
+- id: Office Fan Speed
+  alias: Office Fan Speed
+  initial_state: false
+  trigger:
+  - platform: state
+    entity_id: sensor.off_temperature
+  - platform: state
+    entity_id: sensor.office_temperature_target
+  condition:
+  - condition: state
+    entity_id: timer.office_fan_cooldown
+    state: idle
+  action:
+  - service: fan.turn_on
+    entity_id: fan.office_fan_speed
+    data_template:
+      speed: "{% if (((states('sensor.office_temperature_target') | float) - (states('sensor.office_temperature')\
+        \ | float))) >= 1.0 %}\n  low\n{% elif (((states('sensor.office_temperature_target')\
+        \ | float) - (states('sensor.office_temperature') | float))) <= -3.0 %}\n\
+        \  high\n{% else %}\n  medium\n{% endif %}"
+  - service: timer.start
+    entity_id: timer.office_fan_cooldown

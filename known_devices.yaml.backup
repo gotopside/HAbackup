@@ -1,0 +1,760 @@
+
+oneplus5_ping:
+  hide_if_away: false
+  icon:
+  mac:
+  name: oneplus5 ping
+  picture:
+  track: true
+
+00_03_ea_10_ce_61:
+  hide_if_away: false
+  icon:
+  mac: 00:03:EA:10:CE:61
+  name: Power control
+  picture:
+  track: false
+
+00_05_cd_22_47_58:
+  hide_if_away: false
+  icon:
+  mac: 00:05:CD:22:47:58
+  name: Denon AVR
+  picture:
+  track: false
+
+00_1c_2a_02_08_00:
+  hide_if_away: false
+  icon:
+  mac: 00:1C:2A:02:08:00
+  name: Envisalink
+  picture:
+  track: false
+
+00_1d_60_72_16_cd:
+  hide_if_away: false
+  icon:
+  mac: 00:1D:60:72:16:CD
+  name: Office desktop
+  picture:
+  track: false
+
+00_80_f0_a7_03_e2:
+  hide_if_away: false
+  icon:
+  mac: 00:80:F0:A7:03:E2
+  name: LR PTZ camera
+  picture:
+  track: false
+
+00_90_a9_d9_54_ea:
+  hide_if_away: false
+  icon:
+  mac: 00:90:A9:D9:54:EA
+  name: WD NAS
+  picture:
+  track: false
+
+00_90_a9_e2_f9_99:
+  hide_if_away: false
+  icon:
+  mac: 00:90:A9:E2:F9:99
+  name: TS NAS
+  picture:
+  track: false
+
+0c_4d_e9_af_b7_64:
+  hide_if_away: false
+  icon:
+  mac: 0C:4D:E9:AF:B7:64
+  name: Mac mini
+  picture:
+  track: false
+
+18_e8_29_16_98_b5:
+  hide_if_away: false
+  icon:
+  mac: 18:E8:29:16:98:B5
+  name: Garage WAP
+  picture:
+  track: false
+
+18_fe_34_a6_4d_6b:
+  hide_if_away: false
+  icon:
+  mac: 18:FE:34:A6:4D:6B
+  name: OpenEVSE
+  picture:
+  track: false
+
+24_0a_c4_96_4a_e4:
+  hide_if_away: false
+  icon:
+  mac: 24:0A:C4:96:4A:E4
+  name: Laundry monitor
+  picture:
+  track: false
+
+28_56_5a_8b_2b_28:
+  hide_if_away: false
+  icon:
+  mac: 28:56:5A:8B:2B:28
+  name: Brother Printer
+  picture:
+  track: false
+
+2c_41_38_b9_9b_32:
+  hide_if_away: false
+  icon:
+  mac: 2C:41:38:B9:9B:32
+  name: Zoneminder
+  picture:
+  track: false
+
+2c_f4_32_ad_01_e7:
+  hide_if_away: false
+  icon:
+  mac: 2C:F4:32:AD:01:E7
+  name: Kingroon power
+  picture:
+  track: false
+
+44_00_49_33_74_4a:
+  hide_if_away: false
+  icon:
+  mac: 44:00:49:33:74:4A
+  name: Kitchen Alexa
+  picture:
+  track: false
+
+4c_11_ae_ba_c3_18:
+  hide_if_away: false
+  icon:
+  mac: 4C:11:AE:BA:C3:18
+  name: Mailbox cam
+  picture:
+  track: false
+
+4c_11_ae_ba_c3_34:
+  hide_if_away: false
+  icon:
+  mac: 4C:11:AE:BA:C3:34
+  name: Kitchen cam
+  picture:
+  track: false
+
+60_01_94_c4_69_65:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:C4:69:65
+  name: Garage fan
+  picture:
+  track: false
+
+68_c6_3a_cd_85_c8:
+  hide_if_away: false
+  icon:
+  mac: 68:C6:3A:CD:85:C8
+  name: Washing machine
+  picture:
+  track: false
+
+6c_3b_6b_92_4a_10:
+  hide_if_away: false
+  icon:
+  mac: 6C:3B:6B:92:4A:10
+  name: Mikrotik Router
+  picture:
+  track: false
+
+6c_3b_6b_92_4a_11:
+  hide_if_away: false
+  icon:
+  mac: 6C:3B:6B:92:4A:11
+  name: 6c 3b 6b 92 4a 11
+  picture:
+  track: false
+
+6c_3b_6b_92_4a_12:
+  hide_if_away: false
+  icon:
+  mac: 6C:3B:6B:92:4A:12
+  name: 6c 3b 6b 92 4a 12
+  picture:
+  track: false
+
+6c_3b_6b_92_4a_13:
+  hide_if_away: false
+  icon:
+  mac: 6C:3B:6B:92:4A:13
+  name: 6c 3b 6b 92 4a 13
+  picture:
+  track: false
+
+6c_3b_6b_92_4a_14:
+  hide_if_away: false
+  icon:
+  mac: 6C:3B:6B:92:4A:14
+  name: 6c 3b 6b 92 4a 14
+  picture:
+  track: false
+
+6c_3b_6b_92_4a_15:
+  hide_if_away: false
+  icon:
+  mac: 6C:3B:6B:92:4A:15
+  name: 6c 3b 6b 92 4a 15
+  picture:
+  track: false
+
+6c_3b_6b_92_4a_16:
+  hide_if_away: false
+  icon:
+  mac: 6C:3B:6B:92:4A:16
+  name: 6c 3b 6b 92 4a 16
+  picture:
+  track: false
+
+6c_3b_6b_92_4a_17:
+  hide_if_away: false
+  icon:
+  mac: 6C:3B:6B:92:4A:17
+  name: 6c 3b 6b 92 4a 17
+  picture:
+  track: false
+
+6c_56_97_57_f3_2e:
+  hide_if_away: false
+  icon:
+  mac: 6C:56:97:57:F3:2E
+  name: Garage Alexa
+  picture:
+  track: false
+
+74_c2_46_1e_cf_ce:
+  hide_if_away: false
+  icon:
+  mac: 74:C2:46:1E:CF:CE
+  name: Office Alexa
+  picture:
+  track: false
+
+78_0f_77_5a_b9_52:
+  hide_if_away: false
+  icon:
+  mac: 78:0F:77:5A:B9:52
+  name: Broadlink IR
+  picture:
+  track: false
+
+80_2a_a8_1d_11_23:
+  hide_if_away: false
+  icon:
+  mac: 80:2A:A8:1D:11:23
+  name: Toughswitch
+  picture:
+  track: false
+
+80_7d_3a_5b_a8_dd:
+  hide_if_away: false
+  icon:
+  mac: 80:7D:3A:5B:A8:DD
+  name: Torch shelly
+  picture:
+  track: false
+
+80_7d_3a_5b_ab_14:
+  hide_if_away: false
+  icon:
+  mac: 80:7D:3A:5B:AB:14
+  name: Coffee shelly
+  picture:
+  track: false
+
+84_f3_eb_46_7a_47:
+  hide_if_away: false
+  icon:
+  mac: 84:F3:EB:46:7A:47
+  name: MBR Bulb 1
+  picture:
+  track: false
+
+90_a4_de_c7_a7_0d:
+  hide_if_away: false
+  icon:
+  mac: 90:A4:DE:C7:A7:0D
+  name: Garage Laptop
+  picture:
+  track: true
+
+94_65_2d_82_51_22:
+  hide_if_away: false
+  icon:
+  mac: 94:65:2D:82:51:22
+  name: Jake OnePlus
+  picture:
+  track: true
+
+9c_5a_44_14_af_cd:
+  hide_if_away: false
+  icon:
+  mac: 9C:5A:44:14:AF:CD
+  name: Hassio Laptop
+  picture:
+  track: false
+
+a8_8e_24_a0_eb_31:
+  hide_if_away: false
+  icon:
+  mac: A8:8E:24:A0:EB:31
+  name: Mac mini
+  picture:
+  track: false
+
+ac_cc_8e_0b_9d_06:
+  hide_if_away: false
+  icon:
+  mac: AC:CC:8E:0B:9D:06
+  name: Axis garage 2
+  picture:
+  track: false
+
+ac_cc_8e_81_4e_d3:
+  hide_if_away: false
+  icon:
+  mac: AC:CC:8E:81:4E:D3
+  name: Axis encoder 2
+  picture:
+  track: false
+
+ac_cc_8e_9f_98_43:
+  hide_if_away: false
+  icon:
+  mac: AC:CC:8E:9F:98:43
+  name: Axis encoder 3
+  picture:
+  track: false
+
+b4_e6_2d_18_69_f5:
+  hide_if_away: false
+  icon:
+  mac: B4:E6:2D:18:69:F5
+  name: Office bulb 1
+  picture:
+  track: false
+
+b4_e6_2d_18_6b_51:
+  hide_if_away: false
+  icon:
+  mac: B4:E6:2D:18:6B:51
+  name: MBR Bulb 2
+  picture:
+  track: false
+
+b4_e6_2d_a2_71_81:
+  hide_if_away: false
+  icon:
+  mac: B4:E6:2D:A2:71:81
+  name: OVMS
+  picture:
+  track: true
+
+b8_27_eb_1d_ad_27:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:1D:AD:27
+  name: Office BT monitor
+  picture:
+  track: false
+
+topside1:
+  hide_if_away: false
+  icon:
+  mac: FC:3F:DB:88:01:55
+  name: topside1
+  picture:
+  track: true
+
+b8_27_eb_ba_e3_f4:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:BA:E3:F4
+  name: Sidewinder Octoprint
+  picture:
+  track: false
+
+switch:
+  hide_if_away: false
+  icon:
+  mac: F0:9F:C2:0A:CD:13
+  name: Unifi Switch
+  picture:
+  track: false
+
+b8_27_eb_f3_b2_54:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:F3:B2:54
+  name: Ultimaker Octoprint
+  picture:
+  track: false
+
+bc_dd_c2_01_5a_83:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:01:5A:83
+  name: Office bulb 3
+  picture:
+  track: false
+
+bc_dd_c2_08_59_9f:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:08:59:9F
+  name: Kitchen Temperature
+  picture:
+  track: false
+
+house_thermostat:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:08:C6:3A
+  name: house-thermostat
+  picture:
+  track: false
+
+bc_dd_c2_08_c5_84:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:08:C5:84
+  name: Truck Door
+  picture:
+  track: false
+
+bc_dd_c2_08_c5_9a:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:08:C5:9A
+  name: Garage AC output
+  picture:
+  track: false
+
+garage_laptop:
+  hide_if_away: false
+  icon:
+  mac: E8:03:9A:3F:25:87
+  name: Garage-Laptop
+  picture:
+  track: true
+
+bc_dd_c2_08_ca_1f:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:08:CA:1F
+  name: House AC output
+  picture:
+  track: false
+
+bc_dd_c2_08_ca_d2:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:08:CA:D2
+  name: Litterbox
+  picture:
+  track: false
+
+bc_dd_c2_08_d6_60:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:08:D6:60
+  name: Shop Door
+  picture:
+  track: false
+
+esp_60a37c:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:60:A3:7C
+  name: Luftdaten
+  picture:
+  track: false
+
+bc_dd_c2_8b_00_00:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:8B:00:00
+  name: Nightstand
+  picture:
+  track: false
+
+dc_4f_22_60_aa_b7:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:60:AA:B7
+  name: Office Multisensor
+  picture:
+  track: false
+
+dc_4f_22_61_0c_d4:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:61:0C:D4
+  name: Workbench Multisensor
+  picture:
+  track: false
+
+dc_4f_22_dc_10_ea:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:DC:10:EA
+  name: MBR Fan
+  picture:
+  track: false
+
+dc_4f_22_dc_15_67:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:DC:15:67
+  name: Office Fan
+  picture:
+  track: false
+
+f0_9f_c2_0a_cd_14:
+  hide_if_away: false
+  icon:
+  mac: F0:9F:C2:0A:CD:14
+  name: Unk
+  picture:
+  track: false
+
+f0_9f_c2_13_5a_20:
+  hide_if_away: false
+  icon:
+  mac: F0:9F:C2:13:5A:20
+  name: Litterbox Cam
+  picture:
+  track: false
+
+fc_ec_da_31_0d_69:
+  hide_if_away: false
+  icon:
+  mac: FC:EC:DA:31:0D:69
+  name: Unifi AP Main
+  picture:
+  track: false
+
+48_c7_96_02_8e_b1:
+  hide_if_away: false
+  icon:
+  mac: 48:C7:96:02:8E:B1
+  name: Unkn
+  picture:
+  track: false
+
+dc_fb_48_04_81_7a:
+  hide_if_away: false
+  icon:
+  mac: DC:FB:48:04:81:7A
+  name: X1 Carbon
+  picture:
+  track: true
+
+dc_4f_22_60_e7_ef:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:60:E7:EF
+  name: dc 4f 22 60 e7 ef
+  picture:
+  track: true
+
+14_96_e5_a4_0d_8a:
+  hide_if_away: false
+  icon:
+  mac: 14:96:E5:A4:0D:8A
+  name: 14 96 e5 a4 0d 8a
+  picture:
+  track: true
+
+c0_a8_00_2a_c0_a8:
+  hide_if_away: false
+  icon:
+  mac: C0:A8:00:2A:C0:A8
+  name: c0 a8 00 2a c0 a8
+  picture:
+  track: true
+
+58_e2_8f_91_24_aa:
+  hide_if_away: false
+  icon:
+  mac: 58:E2:8F:91:24:AA
+  name: 58 e2 8f 91 24 aa
+  picture:
+  track: true
+
+22_ff_48_2f_de_3f:
+  hide_if_away: false
+  icon:
+  mac: 22:FF:48:2F:DE:3F
+  name: 22 ff 48 2f de 3f
+  picture:
+  track: true
+
+00_0a_f5_cb_12_40:
+  hide_if_away: false
+  icon:
+  mac: 00:0A:F5:CB:12:40
+  name: 00 0a f5 cb 12 40
+  picture:
+  track: true
+
+b8_27_eb_98_10_22:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:98:10:22
+  name: b8 27 eb 98 10 22
+  picture:
+  track: true
+
+bc_dd_c2_08_d1_4f:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:08:D1:4F
+  name: bc dd c2 08 d1 4f
+  picture:
+  track: true
+
+c8_3c_85_66_ad_ff:
+  hide_if_away: false
+  icon:
+  mac: C8:3C:85:66:AD:FF
+  name: c8 3c 85 66 ad ff
+  picture:
+  track: true
+
+84_eb_18_d8_25_58:
+  hide_if_away: false
+  icon:
+  mac: 84:EB:18:D8:25:58
+  name: 84 eb 18 d8 25 58
+  picture:
+  track: true
+
+52_1d_a0_bb_13_66:
+  hide_if_away: false
+  icon:
+  mac: 52:1D:A0:BB:13:66
+  name: 52 1d a0 bb 13 66
+  picture:
+  track: true
+
+c0_a8_00_28_c0_a8:
+  hide_if_away: false
+  icon:
+  mac: C0:A8:00:28:C0:A8
+  name: c0 a8 00 28 c0 a8
+  picture:
+  track: true
+
+74_f0_6d_3d_9a_de:
+  hide_if_away: false
+  icon:
+  mac: 74:F0:6D:3D:9A:DE
+  name: 74 f0 6d 3d 9a de
+  picture:
+  track: true
+
+28_18_98_b5_a7_1b:
+  hide_if_away: false
+  icon:
+  mac: 28:18:98:B5:A7:1B
+  name: 28 18 98 b5 a7 1b
+  picture:
+  track: true
+
+98_fa_9b_3d_63_46:
+  hide_if_away: false
+  icon:
+  mac: 98:FA:9B:3D:63:46
+  name: 98 fa 9b 3d 63 46
+  picture:
+  track: true
+
+54_4a_16_9a_ed_13:
+  hide_if_away: false
+  icon:
+  mac: 54:4A:16:9A:ED:13
+  name: 54 4a 16 9a ed 13
+  picture:
+  track: true
+
+5a_88_ef_56_4c_3b:
+  hide_if_away: false
+  icon:
+  mac: 5A:88:EF:56:4C:3B
+  name: 5a 88 ef 56 4c 3b
+  picture:
+  track: true
+
+c6_d3_20_d0_08_15:
+  hide_if_away: false
+  icon:
+  mac: C6:D3:20:D0:08:15
+  name: c6 d3 20 d0 08 15
+  picture:
+  track: true
+
+60_db_c7_5e_39_7c:
+  hide_if_away: false
+  icon:
+  mac: 60:DB:C7:5E:39:7C
+  name: 60 db c7 5e 39 7c
+  picture:
+  track: true
+
+b8_b2_f8_71_d4_d3:
+  hide_if_away: false
+  icon:
+  mac: B8:B2:F8:71:D4:D3
+  name: b8 b2 f8 71 d4 d3
+  picture:
+  track: true
+
+5c_a3_9d_18_63_ed:
+  hide_if_away: false
+  icon:
+  mac: 5C:A3:9D:18:63:ED
+  name: 5c a3 9d 18 63 ed
+  picture:
+  track: true
+
+28_18_98_b5_9c_4b:
+  hide_if_away: false
+  icon:
+  mac: 28:18:98:B5:9C:4B
+  name: 28 18 98 b5 9c 4b
+  picture:
+  track: true
+
+9c_8e_cd_27_18_e0:
+  hide_if_away: false
+  icon:
+  mac: 9C:8E:CD:27:18:E0
+  name: 9c 8e cd 27 18 e0
+  picture:
+  track: true
+
+48_60_5f_22_3f_b9:
+  hide_if_away: false
+  icon:
+  mac: 48:60:5F:22:3F:B9
+  name: 48 60 5f 22 3f b9
+  picture:
+  track: true
+
+bc_dd_c2_ea_3a_c3:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:EA:3A:C3
+  name: bc dd c2 ea 3a c3
+  picture:
+  track: true

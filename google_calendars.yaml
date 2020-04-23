@@ -1,0 +1,63 @@
+
+- cal_id: nhvo6eagl46a64o5r5s3du7a1s@group.calendar.google.com
+  entities:
+  - device_id: auto_x
+    ignore_availability: true
+    name: Auto X
+    track: true
+
+- cal_id: jakekooser@gmail.com
+  entities:
+  - device_id: jakekooser_gmail_com
+    ignore_availability: true
+    name: jakekooser@gmail.com
+    track: true
+
+- cal_id: vkc5s0t9s85t0f9ha75pu4lu84@group.calendar.google.com
+  entities:
+  - device_id: jake_48_hours
+    ignore_availability: true
+    name: Jake 48 Hours
+    track: true
+
+- cal_id: topsidecommunications@gmail.com
+  entities:
+  - device_id: topsidecommunications_gmail_com
+    ignore_availability: true
+    name: topsidecommunications@gmail.com
+    track: true
+
+- cal_id: spi34i3ifse8mgvvec71ujbe13naqbjl@import.calendar.google.com
+  entities:
+  - device_id: jake_kooser_tripit
+    ignore_availability: true
+    name: Jake Kooser (TripIt)
+    track: true
+
+- cal_id: membership@goldcoastregion.org
+  entities:
+  - device_id: gold_coast_region_pca_activities
+    ignore_availability: true
+    name: Gold Coast Region PCA Activities
+    track: true
+
+- cal_id: en.usa#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_united_states
+    ignore_availability: true
+    name: Holidays in United States
+    track: true
+
+- cal_id: p#weather@group.v.calendar.google.com
+  entities:
+  - device_id: weather
+    ignore_availability: true
+    name: Weather
+    track: true
+
+- cal_id: superconference@hackaday.io
+  entities:
+  - device_id: hackaday_classes_and_events
+    ignore_availability: true
+    name: Hackaday Classes and Events
+    track: true

@@ -1,0 +1,106 @@
+# Garage Door Example - https://esphome.io/cookbook/garage-door
+# Control a garage door which uses a momentary-button (like a doorbell)
+
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: truck_door
+  friendly_name: Truck Door
+  button_delay: 150ms
+  ip_address: !secret truck_door_ip
+
+
+esphome:
+  # https://esphome.io/components/esphome
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidG
+  password: !secret passwdG
+    
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+    dns1: !secret lan_dns1
+
+
+mqtt:
+  broker: !secret mqtt_broker
+  username: !secret mqtt_uname
+  password: !secret mqtt_pw
+  topic_prefix: "garage"
+  id: "Truck_do0r"
+    
+logger:
+  # https://esphome.io/components/logger
+
+ota:
+#  password: !secret esphome_ota_password
+  # https://esphome.io/components/ota
+
+web_server:
+  port: 80
+
+sensor:
+  - platform: wifi_signal
+    name: $friendly_name Wifi Signal
+    update_interval: 60s
+    
+  - platform: uptime
+    name: $friendly_name Uptime 
+  
+binary_sensor:
+  - platform: status
+    name: $friendly_name status
+
+  - platform: gpio
+    # https://esphome.io/components/binary_sensor/gpio
+    pin: 
+      number: D2   # D0   sensor uses D0 & 3.3v
+      mode: INPUT_PULLUP
+      inverted: False   # may need to remove this depending on where your sensor is located
+    id: ${device_name}_sensor
+    name: $friendly_name Reed Switch
+    device_class: garage_door
+    
+ 
+switch:
+  - platform: gpio
+    # https://esphome.io/components/switch/gpio
+    name: $friendly_name Relay
+    id: relay
+    pin: 
+      number: GPIO5   # D1
+      inverted: False
+    restore_mode: ALWAYS_OFF
+#    internal: True
+
+cover:
+  - platform: template
+    # https://esphome.io/components/cover/template
+    name: ${friendly_name}
+    id: ${device_name}
+    lambda: !lambda |-
+      if (id(${device_name}_sensor).state) {
+        return cover::COVER_OPEN;
+      } else {
+        return cover::COVER_CLOSED;
+      }
+    optimistic: false
+    assumed_state: true
+    open_action:
+      - switch.turn_off: relay
+      - switch.turn_on: relay
+      - delay: ${button_delay}
+      - switch.turn_off: relay
+      - cover.stop: $device_name
+    close_action:
+      - switch.turn_off: relay
+      - switch.turn_on: relay
+      - delay: ${button_delay}
+      - switch.turn_off: relay
+      - cover.stop: $device_name
+    stop_action:
+      - switch.turn_off: relay

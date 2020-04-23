@@ -1,0 +1,107 @@
+# Home or away indicators
+
+# overrides away mode
+  notify_override:
+    name: away override
+    initial: off
+
+# phone present
+  notify_phone_home:
+    name: Phone present
+    initial: off
+
+# laptop present
+  notify_laptop_home:
+    name: Laptop present
+    initial: off
+
+# Home away mode
+  notify_home:
+    name: House Occupied
+    initial: off
+
+# Phone In office
+  office_on:
+    name: I'm Home
+    initial: off
+
+# Phone In Garage
+  garage_on:
+    name: In shop
+    initial: off
+
+# Inputs for automation
+
+# Tell me if it's dark outside
+  dark_outside:
+    name: darkness
+    initial: off
+
+# Is the shop door closed?
+  shop_door:
+    name: shopdoor
+    initial: on
+
+# Is the truck door closed?
+  truck_door:
+    name: truckdoor
+    initial: on
+
+# Close the garage doors
+  close_doors:
+    name: Close doors
+    initial: off
+
+# Garage AC is definitely running
+  garage_ac_on:
+    name: Garage AC running
+    initial: off
+
+# Disable garage AC
+  garage_ac_disable:
+    name: Garage AC disable
+    initial: off
+
+# for garage door automations
+  911_esphome_detected:
+    initial: off
+  smart_esphome_detected:
+    initial: off
+  esp_car_debug:
+    initial: off
+  911_opened_garage:
+    initial: off
+  smart_opened_garage:
+    initial: off
+  disarm_911_door:
+    initial: off
+  disarm_smart_door:
+    initial: off
+
+  jake_phone_alarm_set:
+    name: Jakes telephone alarm
+
+  home_occupied:
+    name: Home Occupied
+
+
+  # Switch to Enable Alarm Clock
+  house_option_alarmclock:
+    name: Alarm Clock
+    initial: on
+    icon: mdi:alarm
+  # Used by Automation to enable Snooze
+  house_alarmclock_snooze:
+    name: Snoozing
+    initial: off
+    icon: mdi:alarm-snooze
+  # Used by Automation to track if alarm clock is running
+  house_alarmclock_active:
+    name: Snoozing
+    initial: off
+    icon: mdi:alarm-snooze
+  # Optional: Enable radio for sequence
+  house_alarmclock_radio:
+    name: Alarm Radio
+    initial: on
+    icon: mdi:radio

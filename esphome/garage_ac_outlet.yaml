@@ -1,0 +1,46 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: garage_ac_outlet
+  friendly_name: Garage A/C Outlet Temperature
+  ip_address: !secret garage_ac_output_monitor_ip
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidG
+  password: !secret passwdG
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+web_server:
+  port: 80
+
+dallas:
+  - pin: D5
+    update_interval: 1s
+  
+sensor:
+  - platform: dallas
+    address: 0x36000004C0043C28
+    name: ${friendly_name}
+    id: ${device_name}
+    
+  - platform: wifi_signal
+    name: "Garage AC WiFi Signal"
+    update_interval: 60s
+    
+  - platform: uptime
+    name: "Garage AC Uptime"

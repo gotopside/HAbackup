@@ -1,0 +1,26 @@
+- platform: mqtt
+  name: "Shop Garage Door"
+  state_topic: "garage/cmnd/ShopStatus/POWER2"
+  command_topic: "garage/cmnd/ShopDoor/POWER"
+  payload_open: "ON"
+  payload_close: "ON"
+  payload_stop: "ON"
+  state_open: "ON"
+  state_closed: "OFF"
+  optimistic: false
+  retain: false
+  value_template: '{{ value }}'
+
+- platform: mqtt
+  name: "Truck Garage Door"
+  state_topic: "garage/cmnd/TruckStatus/POWER2"
+  command_topic: "garage/cmnd/TruckDoor/POWER"
+  payload_open: "ON"
+  payload_close: "ON"
+  payload_stop: "ON"
+  state_open: "ON"
+  state_closed: "OFF"
+  optimistic: false
+  retain: false
+  value_template: '{{ value }}'
+

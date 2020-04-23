@@ -1,0 +1,60 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: litterbox
+  friendly_name: Litterbox
+  ip_address: !secret litterbox_ip
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidH
+  password: !secret passwdH
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+web_server:
+  port: 80
+
+sensor:
+  - platform: wifi_signal
+    name: "litterbox WiFi Signal"
+    update_interval: 60s
+    
+  - platform: uptime
+    name: "Litterbox Uptime"      
+
+binary_sensor:
+
+  - platform: status
+    name: "litterbox status"
+
+  - platform: gpio
+    name: "Litter drawer"
+    id: litterdrawer
+    pin:
+      number: D5
+      mode: INPUT_PULLUP
+      inverted: true
+      
+  - platform: gpio
+    name: "Cat detected"
+    id: catsensor
+    pin:
+      number: D6
+      mode: INPUT_PULLUP
+      inverted: true
+  
+  

@@ -1,0 +1,69 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: workbench_multisensor
+  friendly_name: Workbench multisensor
+  ip_address: !secret workbench_multisensor_ip
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidG
+  password: !secret passwdG
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: dht
+    id: off_temp
+    model: AM2302
+    pin: D7
+    temperature:
+      name: "Workbench Temperature"
+    humidity:
+      name: "Workbench Humidity"
+    update_interval: 10s
+  
+  - platform: wifi_signal
+    name: "Workbench WiFi Signal"
+    update_interval: 60s
+    
+  - platform: uptime
+    name: "Workbench Temperature Uptime"  
+    
+binary_sensor:
+  - platform: gpio
+    id: workbench_motion
+    pin: D5
+    name: "Workbench Motion"
+    
+output:
+  - platform: esp8266_pwm
+    pin: D1
+    id: redgpio
+  - platform: esp8266_pwm
+    pin: D2
+    id: greengpio
+  - platform: esp8266_pwm
+    pin: D3
+    id: bluegpio
+
+light:
+  - platform: rgb
+    name: "Multisensor Light"
+    red: redgpio
+    green: greengpio
+    blue: bluegpio    
+  

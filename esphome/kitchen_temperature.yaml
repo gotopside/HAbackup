@@ -1,0 +1,47 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: kitchen_temperature
+  friendly_name: Kitchen Temperature
+  ip_address: !secret kitchen_temperature_ip
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidH
+  password: !secret passwdH
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+web_server:
+  port: 80
+
+sensor:
+  - platform: dht
+    id: ${device_name}
+    model: AM2302
+    pin: D2
+    temperature:
+      name: "Kitchen Temperature"
+    humidity:
+      name: "Kitchen Humidity"
+    update_interval: 10s
+    
+  - platform: wifi_signal
+    name: "Kitchen WiFi Signal"
+    update_interval: 60s
+ 
+  - platform: uptime
+    name: "Kitchen temperature Uptime"

@@ -1,0 +1,272 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+# default_config:
+config:
+map:
+logbook:
+homeassistant:
+  customize: !include customize.yaml
+#  auth_providers:
+#   - type: legacy_api_password
+#     api_password: !secret http_password
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# camera streaming
+stream:
+
+# enable browser mod
+#browser_mod:
+
+# enable nabu casa cloud stuff
+cloud:
+
+# show system health
+system_health:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+automation: !include automations.yaml
+binary_sensor: !include binary_sensors.yaml
+browser_mod: !include browser_mod.yaml
+cover: !include covers.yaml
+device_tracker: !include device_tracker.yaml
+envisalink: !include envisalink.yaml
+fan: !include fans.yaml
+group: !include groups.yaml
+history: !include history.yaml
+input_boolean: !include input_boolean.yaml
+input_select: !include input_select.yaml
+input_text: !include input_text.yaml
+light: !include lights.yaml
+notify: !include notify.yaml
+octoprint: !include octoprint.yaml
+panel_iframe: !include panel_iframe.yaml
+recorder: !include recorder.yaml
+scene: !include scenes.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+shelly: !include shelly.yaml
+switch: !include switches.yaml
+timer: !include timer.yaml
+
+# Date/Time inputs
+input_datetime:
+
+# Phone alarm time
+  next_alarm:
+    name: Jakes next alarm
+    has_date: true
+    has_time: true
+
+############  Surveillance cameras
+camera:
+# Axis encoder 109
+  - platform: generic
+    name: Workshop
+    still_image_url: http://root:u873pNx3rmLY@192.168.0.109/jpg/2/image.jpg
+    stream_source: rtsp://root:u873pNx3rmLY@192.168.0.109/axis-media/media.amp?camera=2
+
+  - platform: generic
+    name: Workbench
+    still_image_url: http://root:u873pNx3rmLY@192.168.0.109/jpg/3/image.jpg
+    stream_source: rtsp://root:u873pNx3rmLY@192.168.0.109/axis-media/media.amp?camera=3
+
+  - platform: generic
+    name: Back Porch
+    still_image_url: http://root:u873pNx3rmLY@192.168.0.109/jpg/4/image.jpg
+    stream_source: rtsp://root:u873pNx3rmLY@192.168.0.109/axis-media/media.amp?camera=4
+
+# Axis encoder 110
+  - platform: generic
+    name: East Drive
+    still_image_url: http://root:9JRg0rTfBG9O@192.168.0.110/jpg/1/image.jpg
+    stream_source: rtsp://root:9JRg0rTfBG9O@192.168.0.110/axis-media/media.amp?camera=1
+
+  - platform: generic
+    name: North Side
+    still_image_url: http://root:9JRg0rTfBG9O@192.168.0.110/jpg/2/image.jpg
+    stream_source: rtsp://root:9JRg0rTfBG9O@192.168.0.110/axis-media/media.amp?camera=2
+
+  - platform: generic
+    name: West Side
+    still_image_url: http://root:9JRg0rTfBG9O@192.168.0.110/jpg/3/image.jpg
+    stream_source: rtsp://root:9JRg0rTfBG9O@192.168.0.110/axis-media/media.amp?camera=3
+
+# Office computer running Unifi video
+  - platform: uvc
+    nvr: 192.168.0.12
+    key: !secret uvc_api_key
+    password: !secret uvc_pw
+
+# Octoprint on Kingroon
+  - platform: mjpeg
+    name: OctoPrint
+    still_image_url: http://192.168.0.65/webcam/?action=snapshot
+    mjpeg_url: http://192.168.0.65/webcam/?action=stream
+
+# Octoprint on Sidewinder
+  - platform: mjpeg
+    name: Sidewinder
+    still_image_url: http://192.168.0.221/webcam/?action=snapshot
+    mjpeg_url: http://192.168.0.221/webcam/?action=stream
+
+# Octoprint on Ultimaker
+  - platform: mjpeg
+    name: Ultimaker
+    still_image_url: http://192.168.0.224/webcam/?action=snapshot
+    mjpeg_url: http://192.168.0.224/webcam/?action=stream
+
+# Reolink dome camera
+  - platform: generic
+    name: Back 
+    still_image_url: !secret Back_Camera_URL
+    stream_source: !secret Back_Camera_Source
+
+
+# control denon AVR in garage
+media_player:
+  - platform: denonavr
+    host: 192.168.0.46
+    name: Garage AVR
+    show_all_sources: False
+    timeout: 2
+
+# monster TV in garage
+  - platform: samsungtv
+    host: 192.168.0.45
+    name: "Garage TV"
+    mac: 5C:A3:9D:18:63:ED
+
+# enable alexa to be seen as a control on lovelace
+alexa_media:
+  accounts:
+    - email: !secret alexa_uname
+      password: !secret alexa_pw
+      url: amazon.com
+      exclude_devices:
+        - "This Device"
+        - "Jacob's Alexa Apps"
+
+# House heating
+climate:
+# House AC
+  - platform: generic_thermostat
+    name: House
+    heater: switch.thermostat_ac
+    target_sensor: sensor.thermostat_temperature
+    min_temp: 40
+    max_temp: 90
+    ac_mode: true
+    target_temp: 79
+    cold_tolerance: 0.3
+    hot_tolerance: 0.3
+    min_cycle_duration:
+      minutes: 10
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "cool"
+    away_temp: 85
+    precision: 1.0
+
+# Office fan
+  - platform: generic_thermostat
+    name: Office
+    heater: switch.office_thermostat_switch
+    target_temp: 78
+    target_sensor: sensor.office_temperature
+#    initial_operation_mode: auto
+    cold_tolerance: 2
+    hot_tolerance: -2
+    ac_mode: true
+
+# Last motion variable
+var:  
+  last_motion:
+    friendly_name: 'Last motion'
+    initial_value: 'Unknown'
+    icon: mdi:run-fast
+#    restore: true
+#    attributes:
+#      icon: mdi:map-marker
+#      name: "Last Motion Sensor"
+
+# Last alarm sensor variable
+  last_alarm:
+    friendly_name: 'Last alarm'
+    initial_value: 'Unknown'
+#    restore: true
+#    attributes:
+    icon: mdi:alarm-bell
+#      name: "Last Alarm Sensor"
+
+# Last vehicle sensor variable
+  last_vehicle:
+    friendly_name: 'Last vehicle'
+    initial_value: 'Unknown'
+#    restore: true
+#    attributes:
+    icon: mdi:alarm-bell
+#      name: "Last Vehicle"
+
+
+
+
+### Weather
+weather:
+  - platform: darksky
+    api_key: !secret DS_key
+    units: us
+
+### Telegram bot configuration
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_key
+    allowed_chat_ids:
+      - !secret telegram_chatid
+
+### Doorbell camera
+amcrest:
+  - host: 192.168.0.104
+    name: Doorbell Camera
+    username: !secret amcrest_uname
+    password: !secret amcrest_pw
+    stream_source: rtsp
+    binary_sensors:
+      - motion_detected
+      - online
+
+### Garage doors
+  - host: 192.168.0.105
+    name: Garage Doors
+    username: !secret amcrest2_uname
+    password: !secret amcrest2_pw
+    stream_source: rtsp
+
+### Influx db connection
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: !secret influxdb_database
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+
+### Grocy component in Community
+grocy:
+  url: a0d7b954-grocy
+  api_key: $secret grocy_api_key
+  verify_ssl: false
+  port: 9192
+  sensor:
+    - enabled: true
+  binary_sensor:
+    - enabled: true

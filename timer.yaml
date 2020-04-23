@@ -1,0 +1,11 @@
+
+# Timer used to control how often the speed of the office fan is updated
+
+office_fan_cooldown:
+  name: "Office Fan Cooldown"
+  duration: '00:05:00'
+
+
+# Timer for garage door closing
+#car_close_garage:
+#  duration: '00:00:01'

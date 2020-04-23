@@ -1,0 +1,48 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: ac_output_monitor
+  friendly_name: A/C Plenum Temperature
+  ip_address: !secret ac_output_ip
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret ssidH
+  password: !secret passwdH
+  manual_ip:
+
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+web_server:
+  port: 80
+  
+dallas:
+  - pin: D4
+    update_interval: 5s
+  
+sensor:
+  - platform: dallas
+    address: 0xA700000018302E3B
+    name: ${friendly_name}
+    id: ${device_name}
+    
+  - platform: wifi_signal
+    name: "AC output WiFi Signal"
+    update_interval: 60s
+    
+  - platform: uptime
+    name: "AC Output Uptime"    

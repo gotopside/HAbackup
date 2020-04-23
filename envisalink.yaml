@@ -1,0 +1,117 @@
+# Alarm connection
+#envisalink:
+  host: 192.168.0.10
+  panel_type: HONEYWELL
+  user_name: !secret el_uname
+  password: !secret el_pw
+  code: !secret el_code
+  port: 4025
+  evl_version: 4
+  keepalive_interval: 60
+  zonedump_interval: 30
+  timeout: 10
+  panic_type: Police
+  zones:
+    10:
+      name: 'Front Door'
+      type: 'opening'
+    11:
+      name: 'Kitchen Door'
+      type: 'opening'
+    12:
+      name: 'Back Door'
+      type: 'opening'
+    13:
+      name: 'LR Alarm motion'
+      type: 'motion'
+    14:
+      name: 'Kitchen Window'
+      type: 'opening'
+    15:
+      name: 'Bathroom Window'
+      type: 'opening'
+    16:
+      name: 'MBR N. Window'
+      type: 'opening'
+    17:
+      name: 'MBR E. Window'
+      type: 'opening'
+    18:
+      name: 'Office E. Window'
+      type: 'opening'
+    19:
+      name: 'Office SE. Window'
+      type: 'opening'
+    20:
+      name: 'Office SW. Window'
+      type: 'opening'
+    21:
+      name: 'LR SE. Window'
+      type: 'opening'
+    22:
+      name: 'LR SW. Window'
+      type: 'opening'
+    23:
+      name: 'GBR South Window'
+      type: 'opening'
+    24:
+      name: 'GBR SW. Window'
+      type: 'opening'
+    25:
+      name: 'GBR NW. Window'
+      type: 'opening'
+    26:
+      name: 'Keyfob Panic'
+      type: 'opening'
+    27:
+      name: 'Keyfob Disarm'
+      type: 'opening'
+    28:
+      name: 'Keyfob Away'
+      type: 'opening'
+    29:
+      name: 'Keyfob Stay'
+      type: 'opening'
+    30:
+      name: 'Garage fire door'
+      type: 'opening'
+    31:
+      name: 'North garage window'
+      type: 'opening'
+    32:
+      name: 'Garage AC Window'
+      type: 'opening'
+    33:
+      name: 'East garage window'
+      type: 'opening'
+    34:
+      name: 'Garage motion'
+      type: 'motion'
+    35:
+      name: 'Garage shop door'
+      type: 'opening'
+    36:
+      name: 'Garage truck door'
+      type: 'opening'
+    37:
+      name: 'Garage shed door'
+      type: 'opening'
+    38:
+      name: 'Laundry room door'
+      type: 'opening'
+    39:
+      name: 'East gate'
+      type: 'opening'
+    40:
+      name: 'West gate'
+      type: 'opening'
+    41:
+      name: 'Mailbox'
+      type: 'opening'
+    42:
+      name: 'Kitchen Laundry door'
+      type: 'opening'
+  partitions:
+    1:
+      name: 'Home Alarm'
+

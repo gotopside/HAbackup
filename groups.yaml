@@ -1,0 +1,29 @@
+# Example configuration.yaml entry
+# *********** Default view ************
+#default_view:
+#  view: yes
+#  icon: mdi:home
+#  entities:
+#    - group.garage_group
+
+garage_outdoor_lights_group:
+  name: Garage outdoor lights
+  icon: mdi:lightbulb
+  entities:
+    - switch.garage_s_light
+    - switch.garage_n_light
+
+inside_garage_lights:
+  name: Garage indoor lights
+  icon: mdi:lightbulb
+  entities:
+    - switch.garage_shop_light
+    - switch.garage_truck_light
+
+entire_garage_group:
+  name: ALL Garage
+  entities:
+    - group.garage_outdoor_lights_group
+    - group.inside_garage_lights
+    - switch.garage_ac
+

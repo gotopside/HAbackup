@@ -1,0 +1,88 @@
+substitutions:
+  # https://esphome.io/guides/configuration-types.html#substitutions
+  device_name: "911"
+  friendly_name: '911'
+  button_delay: 150ms
+  ip_address: !secret 911_presence_ip
+
+esphome:
+  # https://esphome.io/components/esphome
+  name: ${device_name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  networks:
+  - ssid: !secret ssidG
+    password: !secret passwdG
+  - ssid: !secret ssidH
+    password: !secret passwdH
+#  fast_connect: true    
+  reboot_timeout: 0s
+  use_address: ${ip_address}
+  
+  manual_ip:
+    static_ip: ${ip_address}
+    gateway: !secret lan_gateway
+    subnet: !secret lan_subnet
+    dns1: !secret lan_dns1
+
+# Enable logging
+logger:
+
+ota:
+
+web_server:
+  port: 80
+
+mqtt:
+  discovery: true
+  discovery_prefix: homeassistant
+  client_id: home-assistant-esphome-$device_name
+  broker: 192.168.0.20
+  username: !secret mqtt_uname
+  password: !secret mqtt_pw
+  reboot_timeout: 0s
+  keepalive: 2s
+# original MQTT below here  
+  birth_message:
+    topic: homeassistant/binary_sensor/911Presence/state
+    payload: "ON"
+  will_message:
+    topic: homeassistant/binary_sensor/911Presence/state
+    payload: "OFF"
+    
+  on_message:
+     - topic: homeassistant/binary_sensor/911Presence/state
+       payload: "ON"
+       then:
+        - mqtt.publish:
+            topic: zanzito/oneplus5/say
+            payload: "nine eleven home"
+            
+binary_sensor:
+  - platform: status
+    name: Garage Opened ${device_name}
+    id: garage_opened_${device_name}
+  
+sensor:
+  - platform: template
+    name: $friendly_name
+    lambda: |-
+    
+      static int num_cycles = 0;
+      static int prev_count = 0;
+      int retVal;
+      num_cycles += 1;
+      bool ha_responded = (id(garage_opened_911).state); // Home Assistant set binary_sensor ON
+      if (ha_responded) {
+        retVal = prev_count;
+      }
+      else
+      {
+        retVal = num_cycles;
+        prev_count = num_cycles;
+      }
+      return retVal;
+    
+    update_interval: 1000ms

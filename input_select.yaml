@@ -1,0 +1,30 @@
+#input_select.ac_high_setpoint
+# Define input_select
+#input_select:
+  ac_high_setpoint:
+    name: AC High
+    options:
+      - "Select Mode"
+      - "74"
+      - "75"
+      - "76"
+      - "77"
+      - "78"
+      - "79"
+      - "80"
+  ac_low_setpoint:
+    name: AC Low
+    options:
+      - "Select Mode"
+      - "68"
+      - "69"
+      - "70"
+      - "71"
+      - "72"
+      - "73"
+      - "74"
+      - "75"
+      - "76"
+      - "77"
+      - "78"
+

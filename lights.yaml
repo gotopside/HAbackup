@@ -1,0 +1,127 @@
+# experimental
+# light:
+
+# Bedroom fan lights as a group
+- platform: group
+  name: Bedroom Light
+  entities:
+    - light.ESPURNA_467A47
+    - light.ESPURNA_186B51
+
+# Office fan lights as a group
+- platform: group
+  name: Office light
+  entities:
+    - light.ESPURNA_1869F5
+    - light.ESPURNA_8565F9
+    - light.ESPURNA_015A83
+    
+
+
+# Light number 1 in office fan
+- name: ESPURNA_1869F5
+  platform: mqtt
+  state_topic: ESPURNA-1869F5/relay/0
+  command_topic: ESPURNA-1869F5/relay/0/set
+  payload_on: 1
+  payload_off: 0
+  availability_topic: ESPURNA-1869F5/status
+  payload_available: 1
+  payload_not_available: 0
+  brightness_state_topic: ESPURNA-1869F5/brightness
+  brightness_command_topic: ESPURNA-1869F5/brightness/set
+  rgb_state_topic: ESPURNA-1869F5/rgb
+  rgb_command_topic: ESPURNA-1869F5/rgb/set
+  color_temp_command_topic: ESPURNA-1869F5/mired/set
+  white_value_state_topic: ESPURNA-1869F5/channel/3
+  white_value_command_topic: ESPURNA-1869F5/channel/3/set
+
+# Light number 2 in office fan
+- name: ESPURNA_8565F9
+  platform: mqtt
+  state_topic: ESPURNA-8565F9/relay/0
+  command_topic: ESPURNA-8565F9/relay/0/set
+  payload_on: 1
+  payload_off: 0
+  availability_topic: ESPURNA-8565F9/status
+  payload_available: 1
+  payload_not_available: 0
+  brightness_state_topic: ESPURNA-8565F9/brightness
+  brightness_command_topic: ESPURNA-8565F9/brightness/set
+  rgb_state_topic: ESPURNA-8565F9/rgb
+  rgb_command_topic: ESPURNA-8565F9/rgb/set
+  color_temp_command_topic: ESPURNA-8565F9/mired/set
+  white_value_state_topic: ESPURNA-8565F9/channel/3
+  white_value_command_topic: ESPURNA-8565F9/channel/3/set
+
+# Light number 3 in office fan
+- name: ESPURNA_015A83
+  platform: mqtt
+  state_topic: ESPURNA-015A83/relay/0
+  command_topic: ESPURNA-015A83/relay/0/set
+  payload_on: 1
+  payload_off: 0
+  availability_topic: ESPURNA-015A83/status
+  payload_available: 1
+  payload_not_available: 0
+  brightness_state_topic: ESPURNA-015A83/brightness
+  brightness_command_topic: ESPURNA-015A83/brightness/set
+  rgb_state_topic: ESPURNA-015A83/rgb
+  rgb_command_topic: ESPURNA-015A83/rgb/set
+  color_temp_command_topic: ESPURNA-015A83/mired/set
+  white_value_state_topic: ESPURNA-015A83/channel/3
+  white_value_command_topic: ESPURNA-015A83/channel/3/set
+
+# Light number 4 in bedroom fan
+- name: ESPURNA_467A47
+  platform: mqtt
+  state_topic: ESPURNA-467A47/relay/0
+  command_topic: ESPURNA-467A47/relay/0/set
+  payload_on: 1
+  payload_off: 0
+  availability_topic: ESPURNA-467A47/status
+  payload_available: 1
+  payload_not_available: 0
+  brightness_state_topic: ESPURNA-467A47/brightness
+  brightness_command_topic: ESPURNA-467A47/brightness/set
+  rgb_state_topic: ESPURNA-467A47/rgb
+  rgb_command_topic: ESPURNA-467A47/rgb/set
+  color_temp_command_topic: ESPURNA-467A47/mired/set
+  white_value_state_topic: ESPURNA-467A47/channel/3
+  white_value_command_topic: ESPURNA-467A47/channel/3/set
+
+# Light number 5 in bedroom fan
+- name: ESPURNA_186B51
+  platform: mqtt
+  state_topic: ESPURNA-186B51/relay/0
+  command_topic: ESPURNA-186B51/relay/0/set
+  payload_on: 1
+  payload_off: 0
+  availability_topic: ESPURNA-186B51/status
+  payload_available: 1
+  payload_not_available: 0
+  brightness_state_topic: ESPURNA-186B51/brightness
+  brightness_command_topic: ESPURNA-186B51/brightness/set
+  rgb_state_topic: ESPURNA-186B51/rgb
+  rgb_command_topic: ESPURNA-186B51/rgb/set
+  color_temp_command_topic: ESPURNA-186B51/mired/set
+  white_value_state_topic: ESPURNA-186B51/channel/3
+  white_value_command_topic: ESPURNA-186B51/channel/3/set
+
+# Light number 6 at desk
+- name: ESPURNA_05B23D
+  platform: mqtt
+  state_topic: ESPURNA-05B23D/relay/0
+  command_topic: ESPURNA-05B23D/relay/0/set
+  payload_on: 1
+  payload_off: 0
+  availability_topic: ESPURNA-05B23D/status
+  payload_available: 1
+  payload_not_available: 0
+  brightness_state_topic: ESPURNA-05B23D/brightness
+  brightness_command_topic: ESPURNA-05B23D/brightness/set
+  rgb_state_topic: ESPURNA-05B23D/rgb
+  rgb_command_topic: ESPURNA-05B23D/rgb/set
+  color_temp_command_topic: ESPURNA-05B23D/mired/set
+  white_value_state_topic: ESPURNA-05B23D/channel/3
+  white_value_command_topic: ESPURNA-05B23D/channel/3/set

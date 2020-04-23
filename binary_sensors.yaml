@@ -1,0 +1,18 @@
+### binary_sensors.yaml
+
+# car detection
+- platform: mqtt
+  name: Smart Car
+  device_class: connectivity
+  state_topic: homeassistant/binary_sensor/smart/state
+
+- platform: mqtt
+  name: 911
+  device_class: connectivity
+  state_topic: homeassistant/binary_sensor/911Presence/state
+
+- platform: mqtt
+  name: Garage AC Timer
+  state_topic: garage/ac/timerstate
+
+

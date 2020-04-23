@@ -1,0 +1,61 @@
+# octoprint:
+### Octoprint on Kingroon printer
+- host: 192.168.0.65
+  api_key: 561FF86A8DA5409B9EE8EAD047A1C14D
+  name: OctoPrint
+  port: 80
+  path: /
+  ssl: false
+  bed: true
+  number_of_tools: 1
+  sensors:
+    monitored_conditions:
+      - 'Current State'
+      - 'Temperatures'
+      - 'Job Percentage'
+      - 'Time Elapsed'
+      - 'Time Remaining'
+  binary_sensors:
+    monitored_conditions:
+      - 'Printing'
+      - 'Printing Error'
+### Octoprint on Sidewinder
+- host: 192.168.0.67
+  api_key: 4D225F01DFEB4AB3BADA662A4A4EB17F
+  name: Artillery Sidewinder
+  port: 80
+  path: /
+  ssl: false
+  bed: true
+  number_of_tools: 1
+  sensors:
+    monitored_conditions:
+      - 'Current State'
+      - 'Temperatures'
+      - 'Job Percentage'
+      - 'Time Elapsed'
+      - 'Time Remaining'
+  binary_sensors:
+    monitored_conditions:
+      - 'Printing'
+      - 'Printing Error'
+### Octoprint on Ultimaker
+- host: 192.168.0.68
+  api_key: A883FF4D79144BACB15447598C708968
+  name: Ultimaker
+  port: 80
+  path: /
+  ssl: false
+  bed: true
+  number_of_tools: 1
+  sensors:
+    monitored_conditions:
+      - 'Current State'
+      - 'Temperatures'
+      - 'Job Percentage'
+      - 'Time Elapsed'
+      - 'Time Remaining'
+  binary_sensors:
+    monitored_conditions:
+      - 'Printing'
+      - 'Printing Error'
