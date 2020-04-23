@@ -18,6 +18,7 @@ deps
 # Specific file ignores
 *.pickle
 .config_entries.json
+*package-lock.json
 .homekit.state
 .ios.conf
 .spotify-token-cache
