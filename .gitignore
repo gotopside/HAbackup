@@ -10,7 +10,7 @@ __pycache__
 *.zones
 tts
 node-red
-*.google.token
+.google.token
 
 # Directory (contents) ignores
 .cloud
