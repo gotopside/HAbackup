@@ -9,7 +9,7 @@ __pycache__
 *.key
 *.zones
 tts
-*.node-red
+*node-red
 *.google.token
 
 # Directory (contents) ignores
