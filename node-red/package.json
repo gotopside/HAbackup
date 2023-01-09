@@ -5,7 +5,7 @@
     "private": true,
     "dependencies": {
         "node-red-contrib-average": "~0.1.7",
-        "node-red-contrib-chatbot": "~0.18.3",
+        "node-red-contrib-chatbot": "~1.1.5",
         "node-red-contrib-light-scheduler": "0.0.15",
         "node-red-contrib-msg-router": "0.0.6",
         "node-red-contrib-throttle": "~0.1.6"
